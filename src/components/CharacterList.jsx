@@ -9,7 +9,7 @@ const CharacterList = () => {
     const fetchCharacters = async () => {
       try {
         const response = await fetch('https://hp-api.herokuapp.com/api/characters');
-        if (!response.ok) throw new Error('Error fetching data');
+        if (!response.ok) throw new Error('Error obtendiendo datos.');
         const data = await response.json();
         setCharacters(data);
       } catch (err) {

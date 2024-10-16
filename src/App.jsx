@@ -7,10 +7,12 @@ import ErrorBoundary from './ErrorBoundary';
 const App = () => (
   <Router>
     <ErrorBoundary>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/character/:name" element={<CharacterDetail />} />
-      </Routes>
+    <div className="bg-warning" style={{ minHeight: '100vh' }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/character/:name" element={<CharacterDetail />} />
+        </Routes>
+      </div>
     </ErrorBoundary>
   </Router>
 );

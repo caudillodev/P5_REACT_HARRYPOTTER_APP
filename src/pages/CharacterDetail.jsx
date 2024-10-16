@@ -5,8 +5,7 @@ const CharacterDetail = () => {
   const { name } = useParams();
   return (
     <div className="container">
-      <h2>Details for {name}</h2>
-      {/* Detalles adicionales del personaje pueden agregarse aquí */}
+      <h2>Datos para {name}</h2>
     </div>
   );
 };
