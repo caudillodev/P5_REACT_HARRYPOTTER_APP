@@ -1,22 +1,22 @@
+// src/components/CharacterList.jsx
 import React, { useEffect, useState } from 'react';
 import CharacterCard from './CharacterCard';
+import { fetchCharacters } from '../services/ApiHarryPotter';
 
 const CharacterList = () => {
   const [characters, setCharacters] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchCharacters = async () => {
+    const getCharacters = async () => {
       try {
-        const response = await fetch('https://hp-api.herokuapp.com/api/characters');
-        if (!response.ok) throw new Error('Error obtendiendo datos.');
-        const data = await response.json();
+        const data = await fetchCharacters();
         setCharacters(data);
       } catch (err) {
         setError(err.message);
       }
     };
-    fetchCharacters();
+    getCharacters();
   }, []);
 
   if (error) return <p>{error}</p>;

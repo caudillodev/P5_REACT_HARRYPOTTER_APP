@@ -16,6 +16,7 @@ const CharacterCard = ({ character }) => {
         <p className="card-text"><strong>Casa:</strong> {character.house}</p>
         <p className="card-text"><strong>Patronus:</strong> {character.patronus}</p>
         <p className="card-text"><strong>Actor:</strong> {character.actor}</p>
+        <p className="card-text"><strong>ID:</strong> {character.id}</p>
       </div>
     </div>
   );
