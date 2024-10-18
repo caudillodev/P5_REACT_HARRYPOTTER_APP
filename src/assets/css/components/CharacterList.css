@@ -1,0 +1,52 @@
+.container {
+    margin-top: 0px;
+  }
+  
+  .harry-potter-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem; 
+    color: #5c4d9a; 
+    font-weight: bold;
+  }
+  
+  .control-buttons {
+    margin: 20px 0;
+  }
+  
+  .control-buttons input {
+    width: 300px;
+  }
+  
+  .btn-warning {
+    background-color: #ffcc00; /* Color para el botón de refrescar */
+    border-color: #ffcc00;
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Color del botón de búsqueda */
+  }
+  
+  .text-danger {
+    color: red;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card {
+    margin: 15px;
+    width: 18rem; /* Ancho fijo para las tarjetas */
+  }
+  
+  .card-title {
+    font-family: 'Cinzel', serif; 
+    font-size: 1.25rem;
+    color: #333;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+  }

@@ -6,7 +6,7 @@ export const fetchHarryPotterCharacters = async () => {
   try {
     const response = await fetch(API_URL);
     if (!response.ok) {
-      throw new Error('Error al buscar los personajes.');
+      throw new Error('Error al buscar los personajes, la paraste de pecho colorado garka.');
     }
     const data = await response.json();
     return data;
@@ -24,10 +24,10 @@ export const fetchHarryPotterCharacterById = async (id) => {
       throw new Error(`Error al buscar al personaje por ID: ${id}`);
     }
     const data = await response.json();
-    console.log('Character fetched by ID:', data); // Imprimir el JSON en la consola
+    console.log('Error al buscar al personaje por ID:', data); // Imprimir el JSON en la consola
     return data;
   } catch (error) {
-    console.error(`Error buscando el personaje por ID ${id}:`, error);
+    console.error(`Error buscando al personaje por ID ${id}:`, error);
     throw error;
   }
 };
