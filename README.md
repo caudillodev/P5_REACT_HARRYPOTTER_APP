@@ -52,7 +52,7 @@ export const fetchHarryPotterCharacterById = async (id) => {
 ## Manejo de estados en Hooks
 Para el manejo de los estados para la obtención tanto de todos los personajes, como para el personaje obtenido por ID, se definen los hooks `/hooks/useFetchCharacters.js` y `/hooks/useFetchCharacterById.js`
 
-# useFetchCharacters.js
+### useFetchCharacters.js
 ```javascript
 import { useState, useEffect } from 'react';
 import { fetchHarryPotterCharacters } from '../services/ApiHarryPotter';
