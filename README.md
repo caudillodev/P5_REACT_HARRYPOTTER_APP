@@ -50,7 +50,7 @@ export const fetchHarryPotterCharacterById = async (id) => {
 
 ```
 ## Manejo de estados en Hooks
-Para el manejo de los estados para la obtención tanto de todos los personajes, como para el personaje obtenido por ID, se definen los hooks `/hooks/useFetchCharacters.js` y `/hooks/useFetchCharacterById.js`
+Para el manejo de los estados para la obtención tanto de todos los personajes, como para el personaje obtenido por ID, se definen los hooks `/hooks/useFetchCharacters.js` y `/hooks/useFetchCharacterById.js`. Lo destacable en este caso, es que se controlan los estados que permiten agregar el arreglo del objeto de personajes y objeto de personaje (para el caso por ID) y el error.
 
 ### useFetchCharacters.js
 ```javascript
@@ -81,4 +81,38 @@ const useFetchCharacters = () => {
 };
 
 export default useFetchCharacters;
+```
+### useFetchCharacterById.js
+```javascript
+import { useState } from 'react';
+import { fetchHarryPotterCharacterById } from '../services/ApiHarryPotter';
+
+const useFetchCharacterById = () => {
+  const [character, setCharacter] = useState(null);
+  const [error, setError] = useState(null);
+
+  const buscarPorId = async (searchId) => {
+    if (!searchId) {
+      setError('Ingrese el ID');
+      return;
+    }
+
+    try {
+      const characterData = await fetchHarryPotterCharacterById(searchId);
+      if (characterData && characterData.length > 0) {
+        setCharacter(characterData[0]);
+        setError(null);
+      } else {
+        setError(`No se ha encontrado el personaje por el ID: ${searchId}`);
+      }
+    } catch (error) {
+      setError(`No se ha encontrado el personaje por el ID: ${searchId}`);
+      console.error('Error buscando el personaje por ID:', error);
+    }
+  };
+
+  return { character, error, buscarPorId };
+};
+
+export default useFetchCharacterById;
 ```
