@@ -116,3 +116,103 @@ const useFetchCharacterById = () => {
 
 export default useFetchCharacterById;
 ```
+## Comonentes
+Para la UI de la página, tendremos dos componentes `/components/CharacterList.jsx` y `/components/CharacterCard.jsx`. En el componente CharacterList tendremos el despliegue completo de la página, mientras que en CharacterCard.jsx tendremos el despliegue puntual de la tarjeta del personaje. Con lo anterior, podremos reutilizar dicho componente para volcar o actualizar el resultado del objeto personaje de forma eficiente.
+
+### CharacterList.jsx
+```javascript
+import React, { useState } from 'react';
+import CharacterCard from './CharacterCard';
+import useFetchCharacters from '../hooks/useFetchCharacters';
+import useFetchCharacterById from '../hooks/useFetchCharacterById';
+import '../assets/css/components/CharacterList.css';
+
+const CharacterList = () => {
+  const { characters, error: charactersError, loadAllCharacters } = useFetchCharacters();
+  const { character, error: characterError, buscarPorId } = useFetchCharacterById();
+  const [searchId, setSearchId] = useState('');
+
+  const handleRefresh = () => {
+    window.location.reload(); // Recarga la página
+  };
+
+  return (
+    <div className="container">
+      <h1 className="text-center harry-potter-title">Personajes de Harry Potter</h1>
+
+      {/* Botones de control */}
+      <div className="control-buttons my-4 d-flex justify-content-center">
+        <input
+          type="text"
+          className="form-control me-2"
+          placeholder="Buscar por ID de personaje"
+          value={searchId}
+          onChange={(e) => setSearchId(e.target.value)}
+        />
+        <button className="btn btn-primary me-2" onClick={() => buscarPorId(searchId)}>
+          Buscar
+        </button>
+        <button className="btn btn-secondary" onClick={handleRefresh}>
+          Refrescar Página
+        </button>
+      </div>
+
+      {/* Mostrar mensaje de error si no se encuentra el personaje */}
+      {(characterError || charactersError) && (
+        <p className="text-center text-danger">{characterError || charactersError}</p>
+      )}
+
+      {/* Renderizar personajes filtrados o todos los personajes */}
+      <div className="row">
+        {character ? (
+          <div className="col-md-4" key={character.id}>
+            <CharacterCard character={character} />
+          </div>
+        ) : characters.length > 0 ? (
+          characters.map((character) => (
+            <div className="col-md-4" key={character.id}>
+              <CharacterCard character={character} />
+            </div>
+          ))
+        ) : (
+          <p className="text-center">No se encontraron personajes</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default CharacterList;
+```
+
+### CharacterList.jsx
+```javascript
+import React from 'react';
+
+const CharacterCard = ({ character }) => {
+  const defaultImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIhuEtFBCDQ6cu_EfSCteBljkAGyt3cKygDQ&s';
+
+  if (!character) {
+    return <p>El personaje no está disponible</p>;
+  }
+
+  return (
+    <div className="card m-3" style={{ width: '18rem' }}>
+      <img
+        src={character.image || defaultImage}
+        className="card-img-top"
+        alt={`${character.name}`}
+      />
+      <div className="card-body">
+        <h5 className="card-title harry-potter-title">{character.name || 'Nombre desconocido'}</h5>
+        <p className="card-text harry-potter-font"><strong>Casa:</strong> {character.house || 'Casa desconocida'}</p>
+        <p className="card-text harry-potter-font"><strong>Patronus:</strong> {character.patronus || 'Patronus desconocido'}</p>
+        <p className="card-text harry-potter-font"><strong>Actor:</strong> {character.actor || 'Actor desconocido'}</p>
+        <p className="card-text harry-potter-font"><strong>ID:</strong> {character.id || 'ID desconocido'}</p>
+      </div>
+    </div>
+  );
+};
+
+export default CharacterCard;
+```
