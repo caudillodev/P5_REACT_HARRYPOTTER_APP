@@ -1,6 +1,10 @@
 # Proyecto 5 Bootcamp UDD - REACT + VITE
 El objetivo del Proyecto 5 es implementar un proyecto usando REACT + VITE invocando una API Pública.
 
+### Deploy del proyecto
+El proyecto se despliega con Vercel, URL: https://p5-react-harrypotter-app.vercel.app/
+![Captura de pantalla 2024-10-20 a la(s) 17 04 17](https://github.com/user-attachments/assets/7fd73250-2603-4355-851b-92ded293cc2d)
+
 ## API Pública
 La API Pública usada en el ejercicio corresponde al listado de personajes de la película Harry Potter (https://hp-api.onrender.com).
 
