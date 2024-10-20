@@ -11,7 +11,7 @@ De acuerdo con las prácticas del curso, el proyecto se ha estructurado de la si
 ![Captura de pantalla 2024-10-20 a la(s) 16 32 02](https://github.com/user-attachments/assets/9921646a-a26f-4025-87a4-3a4b57b96df1)
 
 ## Invocando la API Pública
-Se desarrollan dos funciones para invocar los personajes. En la función `fetchHarryPotterCharacters` se invocan todos los personajes, mientras que en `fetchHarryPotterCharacterById` se invoca sólo el personaje por el ID
+Se desarrollan dos funciones para invocar los personajes (/services/ApiHarryPotter.js). En la función `fetchHarryPotterCharacters` se invocan todos los personajes, mientras que en `fetchHarryPotterCharacterById` se invoca sólo el personaje por el ID
 
 ```javascript
 const API_URL = 'https://hp-api.herokuapp.com/api/characters';
@@ -48,4 +48,37 @@ export const fetchHarryPotterCharacterById = async (id) => {
   }
 };
 
+```
+## Manejo de estados en Hooks
+Para el manejo de los estados para la obtención tanto de todos los personajes, como para el personaje obtenido por ID, se definen los hooks `/hooks/useFetchCharacters.js` y `/hooks/useFetchCharacterById.js`
+
+#useFetchCharacters.js
+```javascript
+import { useState, useEffect } from 'react';
+import { fetchHarryPotterCharacters } from '../services/ApiHarryPotter';
+
+const useFetchCharacters = () => {
+  const [characters, setCharacters] = useState([]);
+  const [error, setError] = useState(null);
+
+  const loadAllCharacters = async () => {
+    try {
+      const data = await fetchHarryPotterCharacters();
+      setCharacters(data);
+      setError(null); // Limpiar cualquier error previo
+      console.log('Datos de personajes cargados:', data); // Agrega esta línea
+    } catch (error) {
+      setError('Error al buscar los personajes');
+      console.error('Error buscando los personajes:', error);
+    }
+  };
+
+  useEffect(() => {
+    loadAllCharacters();
+  }, []);
+
+  return { characters, error, loadAllCharacters };
+};
+
+export default useFetchCharacters;
 ```
