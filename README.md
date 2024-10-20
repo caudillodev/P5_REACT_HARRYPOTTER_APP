@@ -250,3 +250,71 @@ const CharacterCard = ({ character }) => {
 
 export default CharacterCard;
 ```
+## Configuración del proyecto
+Para la configuración del proyecto, se ralizan los siguientes ajustes al archivo `App.jsx`
+
+```javascript
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import CharacterDetail from './pages/CharacterDetail';
+import ErrorBoundary from './ErrorBoundary';
+
+const App = () => (
+  <Router>
+    <ErrorBoundary>
+    <div className="bg-warning" style={{ minHeight: '100vh' }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/character/:name" element={<CharacterDetail />} />
+        </Routes>
+      </div>
+    </ErrorBoundary>
+  </Router>
+);
+
+export default App;
+```
+
+Adicionalmente en `main.jsx` se agregan dependencias, entre ellas el uso de bootstrap:
+```javascript
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
+El control de errores se maneja en el componente ErrorBoundary :
+```javascript
+import React, { Component } from 'react';
+
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, info) {
+    console.error("Se ha detectado un error:", error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h2>Ups, algo anda mal.</h2>;
+    }
+    return this.props.children;
+  }
+}
+
+export default ErrorBoundary;
+```
