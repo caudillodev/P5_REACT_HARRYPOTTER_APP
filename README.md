@@ -11,9 +11,9 @@ De acuerdo con las prácticas del curso, el proyecto se ha estructurado de la si
 ![Captura de pantalla 2024-10-20 a la(s) 16 32 02](https://github.com/user-attachments/assets/9921646a-a26f-4025-87a4-3a4b57b96df1)
 
 ## Invocando la API Pública
-Se desarrollan dos funciones para invocar los personajes. En la función ... se invocan todos los personajes, mientras que en ... se invoca sólo el personaje por el ID
+Se desarrollan dos funciones para invocar los personajes. En la función `fetchHarryPotterCharacters` se invocan todos los personajes, mientras que en `fetchHarryPotterCharacterById` se invoca sólo el personaje por el ID
 
-```react
+```javascript
 const API_URL = 'https://hp-api.herokuapp.com/api/characters';
 const API_URL_BY_ID = 'https://hp-api.herokuapp.com/api/character';
 
