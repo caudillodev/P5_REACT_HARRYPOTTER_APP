@@ -4,6 +4,40 @@ El objetivo del Proyecto 5 es implementar un proyecto usando REACT + VITE invoca
 ## API Pública
 La API Pública usada en el ejercicio corresponde al listado de personajes de la película Harry Potter (https://hp-api.onrender.com).
 
+### Ejemplo JSON
+```json
+  {
+    "id": "9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8",
+    "name": "Harry Potter",
+    "alternate_names": [
+      "The Boy Who Lived",
+      "The Chosen One",
+      "Undesirable No. 1",
+      "Potty"
+    ],
+    "species": "human",
+    "gender": "male",
+    "house": "Gryffindor",
+    "dateOfBirth": "31-07-1980",
+    "yearOfBirth": 1980,
+    "wizard": true,
+    "ancestry": "half-blood",
+    "eyeColour": "green",
+    "hairColour": "black",
+    "wand": {
+      "wood": "holly",
+      "core": "phoenix tail feather",
+      "length": 11
+    },
+    "patronus": "stag",
+    "hogwartsStudent": true,
+    "hogwartsStaff": false,
+    "actor": "Daniel Radcliffe",
+    "alternate_actors": [],
+    "alive": true,
+    "image": "https://ik.imagekit.io/hpapi/harry.jpg"
+  }
+```
 ## Estructura del proyecto
 De acuerdo con las prácticas del curso, el proyecto se ha estructurado de la siguiente forma:
 ![Captura de pantalla 2024-10-20 a la(s) 16 29 27](https://github.com/user-attachments/assets/38beac70-5a29-47c6-9be3-1d4ea7c68be1)
